@@ -1,0 +1,59 @@
+{
+  "hero": {
+    "title": "Demandez une fois. Comprenez plusieurs.",
+    "subtitle": "PromptSphere vous permet d'explorer diverses réponses de plusieurs LLMs comme Claude, Gemini et Mistral — tout en même temps.",
+    "button": "Essayez maintenant →",
+    "simpleGenerator": "Générateur simple",
+    "advancedGenerator": " Generateur PDF/Excel",
+    "emailDrafter": "Rédiger un e-mail",
+    "exerciseGenerator": "Exo quotidien"
+  },
+  "navbar": {
+    "brand": "🧠 PromptSphere",
+    "ask": "Demandez à l'IA →",
+    "askGeneral": "Questions générales",
+    "askCsv": "Questions sur CSV",
+    "advancedGenerator": "Générateur de documents"
+  },
+  "ask": {
+    "placeholder": "Tapez votre question...",
+    "button": "Interroger tous les modèles",
+    "loading": "Question en cours..."
+  },
+  "askCsv": {
+    "title": "Posez une question sur votre CSV",
+    "placeholder": "Tapez votre question sur le CSV téléchargé...",
+    "button": "Analyser le CSV",
+    "loading": "Analyse en cours...",
+    "uploadPrompt": "Téléchargez un fichier CSV ci-dessous et posez votre question.",
+    "noFile": "Veuillez d'abord télécharger un fichier CSV.",
+    "error": "Une erreur s'est produite lors de l'analyse du CSV.",
+    "back": "← Retour à l'accueil",
+    "resultsTitle": "Résultats des modèles"
+  },
+  "advancedGenerator": {
+    "title": "Générateur de documents avancé",
+    "description": "Générez des documents PDF ou Excel aléatoires avec des options personnalisées.",
+    "minLength": "Longueur minimale des mots",
+    "maxWords": "Nombre maximal de mots (PDF uniquement)",
+    "generateButton": "🚀 Générer le document"
+  },
+  "exercise": {
+    "title": "📝 Exercice de Programmation Quotidien",
+    "language": "Langage",
+    "difficulty": "Difficulté",
+    "generate": "🚀 Générer l'exercice",
+    "generating": "Génération en cours...",
+    "problem": "📝 Problème",
+    "reveal": "Révéler la réponse",
+    "solution": "✅ Solution",
+    "explanation": "💡 Explication",
+    "history": "📜 Historique des exercices"
+  },
+  "footer": {
+    "copyright": "© 2024 PromptSphere. Tous droits réservés.",
+    "home": "Accueil",
+    "ask": "Demander",
+    "askCsv": "Demander CSV"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "hero": {
+    "title": "Ask Once. Understand Many.",
+    "subtitle": "PromptSphere lets you explore diverse responses from multiple LLMs like Claude, Gemini, and Mistral — all at once.",
+    "button": "Try It Now →",
+    "hero": {
+      "simpleGenerator": "Simple Generator",
+      "advancedGenerator": "PDF/Excel Generator",
+      "emailDrafter": "Draft Email",
+      "exerciseGenerator": "Daily Coding Exercise"
+    }
+  },
+  "navbar": {
+    "brand": "🧠 PromptSphere",
+    "ask": "Ask AI →",
+    "askGeneral": "General Questions",
+    "askCsv": "Ask About CSV",
+    "advancedGenerator": "Document Generator"
+  },
+  "ask": {
+    "placeholder": "Type your question...",
+    "button": "Ask All Models",
+    "loading": "Asking..."
+  },
+  "askCsv": {
+    "title": "Ask About Your CSV",
+    "placeholder": "Type your question about the uploaded CSV...",
+    "button": "Analyze CSV",
+    "loading": "Analyzing...",
+    "uploadPrompt": "Upload a CSV file below and ask your question.",
+    "noFile": "Please upload a CSV file first.",
+    "error": "Something went wrong while analyzing the CSV.",
+    "back": "← Back to Home",
+    "resultsTitle": "Results from the Models"
+  },
+
+  "exercise": {
+    "title": "📝 Daily Coding Exercise",
+    "language": "Language",
+    "difficulty": "Difficulty",
+    "generate": "🚀 Generate Exercise",
+    "generating": "Generating...",
+    "problem": "📝 Problem",
+    "reveal": "Reveal Answer",
+    "solution": "✅ Solution",
+    "explanation": "💡 Explanation",
+    "history": "📜 Exercise History"
+  },
+  "footer": {
+    "copyright": "© 2024 PromptSphere. All rights reserved.",
+    "home": "Home",
+    "ask": "Ask",
+    "askCsv": "Ask CSV"
+  }
+}
