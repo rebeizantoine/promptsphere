@@ -4,8 +4,6 @@ import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
-import { div } from "framer-motion/client";
 
 export default function AskCsvPage() {
   const { t } = useTranslation();

@@ -1,23 +1,23 @@
-// src/lib/saveResults.ts
-export function saveResultsToLocal(
-  results: Record<string, string>,
-  prompt: string
-) {
-  const blob = new Blob(
-    [
-      JSON.stringify(
-        { prompt, results, createdAt: new Date().toISOString() },
-        null,
-        2
-      ),
-    ],
-    { type: "application/json" }
-  );
+"use client";
 
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "prompt_results.json";
-  a.click();
-  URL.revokeObjectURL(url);
+import React from "react";
+import { saveResultsToLocal } from "../lib/saveResults"; // Import only, no export here!
+
+export default function ResultsPage() {
+  // Your page logic here
+
+  function handleSave(results: Record<string, string>, prompt: string) {
+    saveResultsToLocal(results, prompt);
+  }
+
+  return (
+    <div>
+      {/* Your UI */}
+      <button onClick={() => handleSave({ model1: "Answer" }, "Prompt here")}>
+        Save Results
+      </button>
+    </div>
+  );
 }
+
+// DO NOT export saveResultsToLocal here!

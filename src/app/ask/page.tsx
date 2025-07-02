@@ -7,7 +7,7 @@ import { Footer } from "../components/Footer";
 import Link from "next/link";
 
 export default function AskPage() {
-  const [responses, setResponses] = useState<any>({});
+  const [responses, setResponses] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
 
   async function handleAsk(prompt: string, lang: string) {
@@ -22,7 +22,6 @@ export default function AskPage() {
     setResponses(data);
     setLoading(false);
   }
-
   return (
     <div>
       <Navbar />

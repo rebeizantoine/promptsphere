@@ -1,9 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  i18n: {
-    locales: ["en", "fr", "es", "de", "ar"],
-    defaultLocale: "en",
-  },
+import { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  output: "export",
+  // Remove i18n here because App Router doesn’t support it in next.config.ts
+  // Handle i18n inside your app code instead
 };
 
-module.exports = nextConfig;
+export default nextConfig;

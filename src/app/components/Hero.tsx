@@ -4,12 +4,19 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
+interface HeroButtonProps {
+  label: string;
+  bgColor?: string;
+  textColor?: string;
+  onClick: () => void;
+}
+
 function HeroButton({
   label,
   bgColor = "bg-white",
   textColor = "text-black",
   onClick,
-}) {
+}: HeroButtonProps) {
   return (
     <button
       onClick={onClick}
@@ -20,7 +27,13 @@ function HeroButton({
   );
 }
 
-function FeatureCard({ icon, title, description }) {
+interface FeatureCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+function FeatureCard({ icon, title, description }: FeatureCardProps) {
   return (
     <div className="bg-white/10 p-6 rounded-xl text-white">
       <div className="text-4xl mb-4">{icon}</div>

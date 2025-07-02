@@ -9,7 +9,9 @@ export function Footer() {
 
   return (
     <footer className="w-full mt-12 py-6 border-t border-white/10 text-white text-center text-sm bg-black bg-opacity-60 backdrop-blur-sm">
-      <p className="mb-3">{t("footer.copyright")}</p>
+      <p className="mb-3">
+        © {currentYear} PromptSphere. {t("footer.copyright")}
+      </p>
 
       <div className="flex justify-center gap-4 mb-3">
         <Link href="/" className="hover:underline">
