@@ -4,6 +4,32 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
+function HeroButton({
+  label,
+  bgColor = "bg-white",
+  textColor = "text-black",
+  onClick,
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`cursor-pointer inline-block ${bgColor} ${textColor} font-semibold px-6 py-3 rounded-xl shadow-lg transition transform hover:scale-105 active:scale-95 hover:brightness-110`}
+    >
+      {label}
+    </button>
+  );
+}
+
+function FeatureCard({ icon, title, description }) {
+  return (
+    <div className="bg-white/10 p-6 rounded-xl text-white">
+      <div className="text-4xl mb-4">{icon}</div>
+      <h4 className="text-xl font-bold mb-2">{title}</h4>
+      <p className="text-white/80">{description}</p>
+    </div>
+  );
+}
+
 export function Hero() {
   const { t } = useTranslation();
   const router = useRouter();
@@ -44,29 +70,32 @@ export function Hero() {
       >
         <HeroButton
           label={t("hero.button")}
-          color="white"
-          textColor="black"
+          bgColor="bg-white"
+          textColor="text-black"
           onClick={() => router.push("/ask")}
         />
         <HeroButton
           label={`📄 ${t("hero.simpleGenerator", "Simple Generator")}`}
-          color="purple-600"
+          bgColor="bg-purple-600"
+          textColor="text-white"
           onClick={() => router.push("/ask-csv")}
         />
         <HeroButton
           label={`⚙️ ${t("hero.advancedGenerator", "Advanced Generator")}`}
-          color="pink-600"
+          bgColor="bg-pink-600"
+          textColor="text-white"
           onClick={() => router.push("/advanced-generator")}
         />
         <HeroButton
           label={`✉️ ${t("hero.emailDrafter", "Draft Email")}`}
-          color="green-600"
+          bgColor="bg-green-600"
+          textColor="text-white"
           onClick={() => router.push("/email-drafter")}
         />
         <HeroButton
           label={`📝 ${t("hero.dailyExercise", "Daily Exercise")}`}
-          color="yellow-500"
-          textColor="black"
+          bgColor="bg-yellow-500"
+          textColor="text-black"
           onClick={() => router.push("/exercise-generator")}
         />
       </motion.div>
@@ -120,55 +149,6 @@ export function Hero() {
           />
         </div>
       </div>
-
-      {/* Optional Features Section */}
-      {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-5xl mx-auto px-4 text-center">
-        <FeatureCard
-          icon="🧠"
-          title={t("hero.feature1Title", "Multi-LLM Q&A")}
-          description={t(
-            "hero.feature1Desc",
-            "Ask several AI models at once for richer answers."
-          )}
-        />
-        <FeatureCard
-          icon="📄"
-          title={t("hero.feature2Title", "Document Tools")}
-          description={t(
-            "hero.feature2Desc",
-            "Generate PDF and Excel files with ease."
-          )}
-        />
-        <FeatureCard
-          icon="📝"
-          title={t("hero.feature3Title", "Daily Exercises")}
-          description={t(
-            "hero.feature3Desc",
-            "Boost your coding skills every day."
-          )}
-        />
-      </div> */}
     </section>
-  );
-}
-
-function HeroButton({ label, color, onClick, textColor = "white" }) {
-  return (
-    <button
-      onClick={onClick}
-      className={`cursor-pointer inline-block bg-${color} text-${textColor} font-semibold px-6 py-3 rounded-xl shadow-lg transition transform hover:scale-105 active:scale-95 hover:brightness-110`}
-    >
-      {label}
-    </button>
-  );
-}
-
-function FeatureCard({ icon, title, description }) {
-  return (
-    <div className="bg-white/10 p-6 rounded-xl text-white">
-      <div className="text-4xl mb-4">{icon}</div>
-      <h4 className="text-xl font-bold mb-2">{title}</h4>
-      <p className="text-white/80">{description}</p>
-    </div>
   );
 }

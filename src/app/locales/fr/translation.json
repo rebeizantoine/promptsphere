@@ -4,9 +4,9 @@
     "subtitle": "PromptSphere vous permet d'explorer diverses réponses de plusieurs LLMs comme Claude, Gemini et Mistral — tout en même temps.",
     "button": "Essayez maintenant →",
     "simpleGenerator": "Générateur simple",
-    "advancedGenerator": " Generateur PDF/Excel",
+    "advancedGenerator": "Générateur PDF/Excel",
     "emailDrafter": "Rédiger un e-mail",
-    "exerciseGenerator": "Exo quotidien"
+    "exerciseGenerator": "Exercice quotidien"
   },
   "navbar": {
     "brand": "🧠 PromptSphere",

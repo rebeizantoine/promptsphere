@@ -3,12 +3,10 @@
     "title": "Ask Once. Understand Many.",
     "subtitle": "PromptSphere lets you explore diverse responses from multiple LLMs like Claude, Gemini, and Mistral — all at once.",
     "button": "Try It Now →",
-    "hero": {
-      "simpleGenerator": "Simple Generator",
-      "advancedGenerator": "PDF/Excel Generator",
-      "emailDrafter": "Draft Email",
-      "exerciseGenerator": "Daily Coding Exercise"
-    }
+    "simpleGenerator": "Simple Generator",
+    "advancedGenerator": "PDF/Excel Generator",
+    "emailDrafter": "Draft Email",
+    "exerciseGenerator": "Daily Coding Exercise"
   },
   "navbar": {
     "brand": "🧠 PromptSphere",
@@ -33,7 +31,6 @@
     "back": "← Back to Home",
     "resultsTitle": "Results from the Models"
   },
-
   "exercise": {
     "title": "📝 Daily Coding Exercise",
     "language": "Language",
