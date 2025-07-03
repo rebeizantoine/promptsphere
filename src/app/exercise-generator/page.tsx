@@ -108,7 +108,7 @@ export default function ExerciseGeneratorPage() {
           <button
             onClick={handleGenerate}
             disabled={loading}
-            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all font-bold text-xl py-4 rounded-2xl w-full mb-6 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all font-bold text-xl py-4 rounded-2xl w-full mb-6 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
             {loading
               ? t("exercise.generating", "Generating...")

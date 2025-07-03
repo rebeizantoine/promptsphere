@@ -151,7 +151,7 @@ export default function AdvancedGeneratorPage() {
             {/* Generate Button */}
             <button
               onClick={handleGenerate}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all font-bold text-xl py-4 rounded-2xl mt-6 shadow-lg"
+              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all font-bold text-xl py-4 rounded-2xl mt-6 shadow-lg cursor-pointer"
             >
               🚀 Generate Document
             </button>

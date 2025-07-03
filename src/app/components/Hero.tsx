@@ -51,7 +51,7 @@ export function Hero() {
     <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pb-16">
       <video
         className="absolute top-0 left-0 w-full h-full object-cover opacity-30 -z-10"
-        src="/publicmp4.mp4"
+        src="/publicmp4-compressed.mp4"
         autoPlay
         loop
         muted
@@ -115,7 +115,7 @@ export function Hero() {
 
       <div className="mt-16 max-w-6xl mx-auto px-4 text-center">
         {/* First row with 3 features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-8 mb-8">
           <FeatureCard
             icon="🧠"
             title={t("hero.feature1Title", "Multi-LLM Q&A")}
@@ -143,7 +143,7 @@ export function Hero() {
         </div>
 
         {/* Second row with 2 features, centered */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-8 justify-center">
           <FeatureCard
             icon="✉️"
             title={t("hero.feature4Title", "Email Drafting")}

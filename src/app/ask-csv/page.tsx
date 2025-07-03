@@ -1,12 +1,11 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
 import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+import { motion } from "framer-motion";
 
 export default function AskCsvPage() {
-  const { t } = useTranslation();
   const [question, setQuestion] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -24,21 +23,14 @@ export default function AskCsvPage() {
     try {
       const res = await fetch(
         "https://promptsphere-backend.onrender.com/api/ask-csv",
-        {
-          method: "POST",
-          body: formData,
-        }
+        { method: "POST", body: formData }
       );
-
-      if (!res.ok) {
-        throw new Error("Failed to get response");
-      }
-
+      if (!res.ok) throw new Error("Failed to get response");
       const data = await res.json();
-      setAnswer(data.bestAnswer || t("askCsv.error"));
+      setAnswer(data.bestAnswer || "❌ No answer returned.");
     } catch (error) {
       console.error("❌ CSV Ask Error:", error);
-      setAnswer(t("askCsv.error"));
+      setAnswer("❌ Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -47,73 +39,70 @@ export default function AskCsvPage() {
   return (
     <div>
       <Navbar />
-      <main className="min-h-screen bg-black text-white p-6">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold">{t("askCsv.title")}</h1>
-          <Link
-            href="/"
-            className="text-sm text-white/60 hover:text-white border px-3 py-1 rounded-lg border-white/30 hover:bg-white/10 transition"
-          >
-            {t("askCsv.back")}
-          </Link>
-        </div>
+      <main className="min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white p-6">
+        <div className="max-w-5xl mx-auto space-y-6">
+          <div className="flex justify-between items-center">
+            <h1 className="text-3xl font-extrabold drop-shadow">
+              📊 Ask Your CSV
+            </h1>
+            <Link
+              href="/"
+              className="text-sm text-white/70 hover:text-white border border-white/20 px-4 py-2 rounded-xl hover:bg-white/10 transition"
+            >
+              ← Back
+            </Link>
+          </div>
 
-        <p className="mb-4 text-white/70">{t("askCsv.uploadPrompt")}</p>
-
-        <div className="flex flex-col gap-4 mb-8">
-          <textarea
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            placeholder={t("askCsv.placeholder")}
-            rows={3}
-            className="w-full bg-black border border-white/20 p-3 rounded-xl text-white resize-none focus:border-white/50 transition"
-            aria-label="CSV question input"
-          />
-
-          <label className="bg-black border border-white/30 px-4 py-2 rounded-xl text-white text-sm cursor-pointer hover:border-white/50 transition w-fit">
-            <input
-              type="file"
-              accept=".csv"
-              onChange={(e) =>
-                setFile(
-                  e.target.files && e.target.files[0] ? e.target.files[0] : null
-                )
-              }
-              className="hidden"
+          <div className="backdrop-blur-md bg-white/5 p-6 rounded-2xl border border-white/10 shadow-xl space-y-4">
+            <textarea
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+              placeholder="Ask a question about your CSV..."
+              rows={3}
+              className="w-full bg-transparent border border-white/20 p-4 rounded-xl text-white resize-none focus:border-white/50 transition"
+              aria-label="CSV question input"
             />
-            {file ? (
-              <span className="truncate max-w-xs inline-block">
-                {file.name}
-              </span>
-            ) : (
-              <span>{t("askCsv.noFile")}</span>
-            )}
-          </label>
 
-          <button
-            onClick={handleCsvAsk}
-            disabled={loading || !file || !question.trim()}
-            className="bg-white text-black px-5 py-2 rounded-xl font-medium disabled:opacity-40 disabled:cursor-not-allowed transition"
-            aria-label="Analyze CSV"
-          >
-            {loading ? t("askCsv.loading") : t("askCsv.button")}
-          </button>
+            <label className="bg-white/10 border border-white/20 px-4 py-2 rounded-xl text-white text-sm cursor-pointer hover:border-white/50 transition w-fit">
+              <input
+                type="file"
+                accept=".csv"
+                onChange={(e) => setFile(e.target.files?.[0] || null)}
+                className="hidden"
+              />
+              {file ? (
+                <span className="truncate max-w-xs inline-block">
+                  {file.name}
+                </span>
+              ) : (
+                <span>Upload your CSV file</span>
+              )}
+            </label>
+
+            <button
+              onClick={handleCsvAsk}
+              disabled={loading || !file || !question.trim()}
+              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all font-bold text-xl py-4 rounded-2xl w-full mb-6 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed mt-4 cursor-pointer"
+              aria-label="Analyze CSV"
+            >
+              {loading ? "Analyzing..." : "Ask CSV"}
+            </button>
+          </div>
+
+          {answer && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl whitespace-pre-line mt-6"
+            >
+              <h2 className="text-xl font-bold mb-4">🧠 Answer:</h2>
+              {answer}
+            </motion.div>
+          )}
         </div>
-
-        {answer && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="bg-white/10 p-4 rounded-xl text-white whitespace-pre-line"
-          >
-            <h2 className="text-xl font-bold mb-2">
-              🧠 {t("askCsv.resultsTitle")}
-            </h2>
-            {answer}
-          </motion.div>
-        )}
       </main>
+      <Footer />
     </div>
   );
 }

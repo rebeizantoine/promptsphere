@@ -28,7 +28,7 @@ export default function AskPage() {
       <main className="min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white p-6">
         <div className="max-w-5xl mx-auto space-y-6">
           <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-extrabold drop-shadow">
+            <h1 className="text-3xl font-extrabold drop-shadow cursor-pointer">
               🧠 Ask the LLMs
             </h1>
             <Link

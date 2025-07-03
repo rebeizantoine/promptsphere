@@ -58,7 +58,7 @@ export default function EmailDrafterPage() {
           <button
             onClick={handleDraft}
             disabled={loading || keyPoints.trim() === ""}
-            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all font-bold text-lg py-4 rounded-2xl shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all font-bold text-lg py-4 rounded-2xl shadow-lg disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
             {loading ? "Drafting..." : "🚀 Draft Email"}
           </button>

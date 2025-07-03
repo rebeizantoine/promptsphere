@@ -48,7 +48,7 @@ export function AskForm({
           disabled={loading || !input.trim()}
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-white text-black px-6 py-2 rounded-xl font-bold shadow-md transition w-full sm:w-auto disabled:opacity-40 disabled:cursor-not-allowed"
+          className="bg-white text-black px-6 py-2 rounded-xl font-bold shadow-md transition w-full sm:w-auto disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
         >
           {loading ? t("ask.loading") : t("ask.button")}
         </motion.button>
