@@ -115,7 +115,7 @@ export function Hero() {
 
       <div className="mt-16 max-w-6xl mx-auto px-4 text-center">
         {/* First row with 3 features */}
-        <div className="grid grid-cols-1 md:grid-cols-1 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <FeatureCard
             icon="🧠"
             title={t("hero.feature1Title", "Multi-LLM Q&A")}
@@ -143,7 +143,7 @@ export function Hero() {
         </div>
 
         {/* Second row with 2 features, centered */}
-        <div className="grid grid-cols-1 md:grid-cols-1 gap-8 justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center">
           <FeatureCard
             icon="✉️"
             title={t("hero.feature4Title", "Email Drafting")}

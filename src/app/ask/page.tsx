@@ -44,7 +44,7 @@ export default function AskPage() {
           </div>
 
           {Object.keys(responses).length > 0 && (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+            <div className="grid md:grid-cols-1 lg:grid-cols-1 gap-6 mt-10">
               {Object.entries(responses).map(([model, answer]) => (
                 <ModelCard
                   key={model}
