@@ -6,8 +6,19 @@
     "simpleGenerator": "Simple Generator",
     "advancedGenerator": "PDF/Excel Generator",
     "emailDrafter": "Draft Email",
-    "exerciseGenerator": "Daily Coding Exercise"
+    "exerciseGenerator": "Daily Coding Exercise",
+    "feature1Title": "Multi-LLM Q&A",
+    "feature1Desc": "Ask several AI models at once for richer answers.",
+    "feature2Title": "Document Tools",
+    "feature2Desc": "Generate PDF and Excel files with ease.",
+    "feature3Title": "Daily Exercises",
+    "feature3Desc": "Boost your coding skills every day.",
+    "feature4Title": "Email Drafting",
+    "feature4Desc": "Quickly generate professional emails from your notes.",
+    "feature5Title": "CSV/Excel Insights",
+    "feature5Desc": "Upload spreadsheets and ask questions instantly."
   },
+
   "navbar": {
     "brand": "🧠 PromptSphere",
     "ask": "Ask AI →",

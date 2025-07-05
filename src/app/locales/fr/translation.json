@@ -6,7 +6,17 @@
     "simpleGenerator": "Générateur simple",
     "advancedGenerator": "Générateur PDF/Excel",
     "emailDrafter": "Rédiger un e-mail",
-    "exerciseGenerator": "Exercice quotidien"
+    "exerciseGenerator": "Exercice quotidien",
+    "feature1Title": "Q&R multi-LLM",
+    "feature1Desc": "Interrogez plusieurs modèles IA à la fois pour des réponses plus riches.",
+    "feature2Title": "Outils de documents",
+    "feature2Desc": "Générez facilement des fichiers PDF et Excel.",
+    "feature3Title": "Exercices quotidiens",
+    "feature3Desc": "Améliorez vos compétences en codage chaque jour.",
+    "feature4Title": "Rédaction d’e-mails",
+    "feature4Desc": "Générez rapidement des e-mails professionnels à partir de vos notes.",
+    "feature5Title": "Analyses CSV/Excel",
+    "feature5Desc": "Téléchargez des tableaux et posez vos questions instantanément."
   },
   "navbar": {
     "brand": "🧠 PromptSphere",
