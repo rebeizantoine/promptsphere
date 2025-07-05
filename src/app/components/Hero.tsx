@@ -51,7 +51,7 @@ export function Hero() {
     <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pb-16">
       <video
         className="absolute top-0 left-0 w-full h-full object-cover opacity-30 -z-10"
-        src="https://res.cloudinary.com/docxw6ugs/video/upload/v1751578703/publicmp4-compressed_vjccrc.mp4"
+        src="https://res.cloudinary.com/docxw6ugs/video/upload/v1751581334/publicmp4_hqmgqd.mp4"
         autoPlay
         loop
         muted
