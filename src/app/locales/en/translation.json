@@ -15,7 +15,7 @@
     "feature3Desc": "Boost your coding skills every day.",
     "feature4Title": "Email Drafting",
     "feature4Desc": "Quickly generate professional emails from your notes.",
-    "feature5Title": "CSV/Excel Insights",
+    "feature5Title": "CSV/PDF Insights",
     "feature5Desc": "Upload spreadsheets and ask questions instantly."
   },
 
@@ -29,7 +29,13 @@
   "ask": {
     "placeholder": "Type your question...",
     "button": "Ask All Models",
-    "loading": "Asking..."
+    "loading": "Asking...",
+
+    "modeBasic": "⚡ Basic",
+    "modePro": "🚀 Pro (Compare)",
+    "result": "Result",
+    "bestAnswer": "🏆 Best Answer",
+    "noResponse": "No response"
   },
   "askCsv": {
     "title": "Ask About Your CSV",

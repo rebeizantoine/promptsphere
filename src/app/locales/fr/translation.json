@@ -15,7 +15,7 @@
     "feature3Desc": "Améliorez vos compétences en codage chaque jour.",
     "feature4Title": "Rédaction d’e-mails",
     "feature4Desc": "Générez rapidement des e-mails professionnels à partir de vos notes.",
-    "feature5Title": "Analyses CSV/Excel",
+    "feature5Title": "Analyses CSV/PDF",
     "feature5Desc": "Téléchargez des tableaux et posez vos questions instantanément."
   },
   "navbar": {
@@ -26,9 +26,15 @@
     "advancedGenerator": "Générateur de documents"
   },
   "ask": {
-    "placeholder": "Tapez votre question...",
-    "button": "Interroger tous les modèles",
-    "loading": "Question en cours..."
+    "placeholder": "Type your question...",
+    "button": "Ask All Models",
+    "loading": "Asking...",
+
+    "modeBasic": "⚡ Basic",
+    "modePro": "🚀 Pro (Comparer)",
+    "result": "Resultat",
+    "bestAnswer": "🏆 Best Answer",
+    "noResponse": "No response"
   },
   "askCsv": {
     "title": "Posez une question sur votre CSV",

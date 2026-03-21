@@ -34,7 +34,7 @@ export function Navbar() {
           onClick={() => router.push("/ask-csv")}
           className="text-sm text-white hover:underline transition cursor-pointer"
         >
-          {t("navbar.simpleGenerator", "CSV Reader")}
+          {t("navbar.simpleGenerator", "CSV/PDF Reader")}
         </button>
 
         <button
