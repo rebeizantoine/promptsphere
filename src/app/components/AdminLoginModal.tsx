@@ -5,7 +5,12 @@ import axios from "axios";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL!;
 
-export function AdminLoginModal({ onClose, onSuccess }: any) {
+interface AdminLoginModalProps {
+  onClose: () => void;
+  onSuccess: () => void;
+}
+
+export function AdminLoginModal({ onClose, onSuccess }: AdminLoginModalProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,8 +29,17 @@ export function AdminLoginModal({ onClose, onSuccess }: any) {
 
       onSuccess(); // 🔥 switch to pro mode
       onClose();
-    } catch (err: any) {
-      setError(err?.response?.data?.message || "Invalid credentials");
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        setError(
+          (err.response?.data as { message?: string })?.message ||
+            "Invalid credentials",
+        );
+      } else if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Invalid credentials");
+      }
     } finally {
       setLoading(false);
     }

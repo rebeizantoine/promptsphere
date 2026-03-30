@@ -134,7 +134,11 @@ export default function AskCsvPdfPage() {
                     accept={mode === "csv" ? ".csv" : ".pdf"}
                     onChange={(e) => {
                       const file = e.target.files?.[0] || null;
-                      mode === "csv" ? setCsvFile(file) : setPdfFile(file);
+                      if (mode === "csv") {
+                        setCsvFile(file);
+                      } else {
+                        setPdfFile(file);
+                      }
                     }}
                     className="hidden"
                   />

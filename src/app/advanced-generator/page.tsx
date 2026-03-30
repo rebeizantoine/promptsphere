@@ -24,13 +24,13 @@ export default function AdvancedGeneratorPage() {
         // 🔸 Replace "/api/health" with the lightest endpoint you have
         const res = await fetch(
           "https://promptsphere-backend.onrender.com/api/health",
-          { cache: "no-store" }
+          { cache: "no-store" },
         );
         if (res.ok) {
           setBackendReady(true);
           return; // stop retrying
         }
-      } catch (_) {
+      } catch {
         /* ignore – likely still booting */
       }
       retryId = setTimeout(ping, 5000); // retry every 5 s
@@ -163,8 +163,8 @@ export default function AdvancedGeneratorPage() {
               {!backendReady
                 ? "Waking up server…"
                 : isGenerating
-                ? "Generating…"
-                : "🚀 Generate Document"}
+                  ? "Generating…"
+                  : "🚀 Generate Document"}
             </button>
           </div>
         </div>

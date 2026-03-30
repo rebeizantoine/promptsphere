@@ -13,10 +13,21 @@ import Link from "next/link";
 const API_URL = process.env.NEXT_PUBLIC_API_URL!;
 
 export default function AskPage() {
+  type CompareResults = {
+    bestAnswer?: string;
+    results: {
+      openai?: { answer?: string };
+      claude?: { answer?: string };
+      openrouter?: { answer?: string };
+    };
+  };
+
   const [mode, setMode] = useState<"basic" | "pro">("basic");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
-  const [compareResults, setCompareResults] = useState<any>(null);
+  const [compareResults, setCompareResults] = useState<CompareResults | null>(
+    null,
+  );
   const [error, setError] = useState<string | null>(null);
   const [showLoginModal, setShowLoginModal] = useState(false);
 
@@ -57,10 +68,18 @@ export default function AskPage() {
       } else {
         setResult(data.result);
       }
-    } catch (err: any) {
-      setError(
-        err?.response?.data?.error || err.message || "Something went wrong",
-      );
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        setError(
+          (err.response?.data as { error?: string })?.error ||
+            err.message ||
+            "Something went wrong",
+        );
+      } else if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Something went wrong");
+      }
     } finally {
       setLoading(false);
     }
@@ -141,7 +160,7 @@ export default function AskPage() {
             <div className="mt-10 space-y-4">
               <ModelCard
                 model={t("ask.bestAnswer")}
-                answer={compareResults.bestAnswer}
+                answer={compareResults.bestAnswer || t("ask.noResponse")}
               />
               <ModelCard
                 model="OpenAI"
