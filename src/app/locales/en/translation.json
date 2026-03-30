@@ -29,6 +29,7 @@
   "ask": {
     "placeholder": "Type your question...",
     "button": "Ask All Models",
+    "buttonBasic": "Ask AI",
     "loading": "Asking...",
 
     "modeBasic": "⚡ Basic",

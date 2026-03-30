@@ -27,9 +27,9 @@
   },
   "ask": {
     "placeholder": "Type your question...",
-    "button": "Ask All Models",
-    "loading": "Asking...",
-
+    "button": "Demander à tous les modèles",
+    "buttonBasic": "Demander à l'IA",
+    "loading": "Demande en cours...",
     "modeBasic": "⚡ Basic",
     "modePro": "🚀 Pro (Comparer)",
     "result": "Resultat",

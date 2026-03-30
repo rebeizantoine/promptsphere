@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { AskForm } from "../components/AskForm";
 import { ModelCard } from "../components/ModelCard";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import { useTranslation } from "react-i18next";
+import { AdminLoginModal } from "../components/AdminLoginModal";
 import Link from "next/link";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL!;
@@ -16,22 +18,25 @@ export default function AskPage() {
   const [result, setResult] = useState<string | null>(null);
   const [compareResults, setCompareResults] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
-  // 🔁 Handle mode switch
+  const { t } = useTranslation(); // Removed i18n here as it wasn't being used locally
+
   const handleModeChange = (newMode: "basic" | "pro") => {
-    setMode(newMode);
+    if (newMode === "pro") {
+      if (mode === "pro") return;
+      setShowLoginModal(true);
+      return;
+    }
 
-    // 🔥 Clear everything when switching modes
+    setMode("basic");
     setResult(null);
     setCompareResults(null);
     setError(null);
   };
 
-  // 🚀 Handle ask
   const handleAsk = async (prompt: string, lang: string) => {
     setLoading(true);
-
-    // 🔥 Clear previous results
     setResult(null);
     setCompareResults(null);
     setError(null);
@@ -43,8 +48,8 @@ export default function AskPage() {
       const response = await axios.post(
         endpoint,
         mode === "pro" ? { question: prompt } : { prompt, lang },
+        { withCredentials: true },
       );
-
       const data = response.data;
 
       if (mode === "pro") {
@@ -60,26 +65,35 @@ export default function AskPage() {
       setLoading(false);
     }
   };
+  const handleLoginSuccess = () => {
+    setMode("pro");
+    setResult(null);
+    setCompareResults(null);
+    setError(null);
+  };
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/api/admin/me`, { withCredentials: true })
+      .then(() => setMode("pro"))
+      .catch(() => {});
+  }, []);
 
   return (
     <div>
       <Navbar />
-
       <main className="min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white p-6">
         <div className="max-w-5xl mx-auto space-y-6">
-          {/* Header */}
           <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-extrabold">🧠 Ask the LLMs</h1>
-
+            <h1 className="text-3xl font-extrabold">🧠 {t("ask.button")}</h1>
             <Link
               href="/"
               className="text-sm text-white/70 hover:text-white border border-white/20 px-4 py-2 rounded-xl hover:bg-white/10 transition"
             >
-              ← Back
+              ← {t("common.back", "Back")}
             </Link>
           </div>
 
-          {/* Mode Toggle */}
+          {/* Mode Toggle with Translations */}
           <div className="flex gap-3">
             <button
               onClick={() => handleModeChange("basic")}
@@ -89,7 +103,7 @@ export default function AskPage() {
                   : "border-white/20 hover:bg-white/10"
               }`}
             >
-              ⚡ Basic
+              {t("ask.modeBasic")}
             </button>
 
             <button
@@ -100,63 +114,64 @@ export default function AskPage() {
                   : "border-white/20 hover:bg-white/10"
               }`}
             >
-              🚀 Pro (Compare)
+              {t("ask.modePro")}
             </button>
           </div>
 
-          {/* Ask Form */}
           <div className="backdrop-blur-md bg-white/5 p-6 rounded-2xl border border-white/10 shadow-xl">
-            <AskForm onAsk={handleAsk} loading={loading} />
+            <AskForm onAsk={handleAsk} loading={loading} mode={mode} />
           </div>
 
-          {/* Loading */}
+          {/* Fixed the curly braces here */}
           {loading && (
             <p className="text-white/60 animate-pulse text-center">
-              🤖 Thinking...
+              {t("ask.loading")}
             </p>
           )}
 
-          {/* Error */}
           {error && <div className="text-red-400 text-center">❌ {error}</div>}
 
-          {/* BASIC RESULT */}
           {result && !loading && mode === "basic" && (
             <div className="mt-10">
               <ModelCard model="OpenAI" answer={result} />
             </div>
           )}
 
-          {/* PRO RESULT */}
           {compareResults && !loading && mode === "pro" && (
             <div className="mt-10 space-y-4">
-              {/* Best Answer */}
               <ModelCard
-                model="🏆 Best Answer"
+                model={t("ask.bestAnswer")}
                 answer={compareResults.bestAnswer}
               />
-
-              {/* All Models */}
               <ModelCard
                 model="OpenAI"
-                answer={compareResults.results.openai?.answer || "No response"}
+                answer={
+                  compareResults.results.openai?.answer || t("ask.noResponse")
+                }
               />
-
               <ModelCard
                 model="Claude"
-                answer={compareResults.results.claude?.answer || "No response"}
+                answer={
+                  compareResults.results.claude?.answer || t("ask.noResponse")
+                }
               />
-
               <ModelCard
                 model="OpenRouter"
                 answer={
-                  compareResults.results.openrouter?.answer || "No response"
+                  compareResults.results.openrouter?.answer ||
+                  t("ask.noResponse")
                 }
               />
             </div>
           )}
+          {showLoginModal && (
+            <AdminLoginModal
+              onClose={() => setShowLoginModal(false)}
+              onSuccess={handleLoginSuccess}
+            />
+          )}
         </div>
       </main>
-
       <Footer />
     </div>
   );
