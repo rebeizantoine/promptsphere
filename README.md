@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PromptSphere AI Platform
 
-## Getting Started
+Multi-LLM orchestration system that compares responses from multiple AI models and selects the most relevant answer.
 
-First, run the development server:
+---
+
+## 🚀 Overview
+
+PromptSphere is an AI-powered backend system designed to interact with multiple large language models simultaneously and intelligently choose the best response.
+
+It is built to improve reliability, quality, and performance of AI-generated outputs by leveraging multiple providers.
+
+---
+
+## ✨ Key Features
+
+- 🤖 Multi-LLM integration (OpenAI, Claude, Mistral)
+- 🧠 Smart response selection logic
+- ⚡ Fast single-model response (Basic mode)
+- 🚀 Multi-model comparison (Pro mode)
+- 📊 Structured response evaluation
+- 🔄 Unified API interface for different providers
+
+---
+
+## 🧠 Architecture
+
+### Core Flow
+
+1. User sends a prompt
+2. System routes request:
+   - Basic mode → single LLM (fast)
+   - Pro mode → multiple LLMs
+3. Responses are collected
+4. Selection logic chooses best answer
+5. Final response is returned to user
+
+---
+
+## 🔌 Integrations
+
+- OpenAI API
+- Anthropic (Claude)
+- Mistral / OpenRouter
+
+---
+
+## ⚙️ Tech Stack
+
+- Node.js
+- Express
+- REST API
+- External LLM APIs
+
+---
+
+## 📡 API Endpoints
+
+### `/ask`
+- Fast response using single LLM
+
+### `/api/compare-llms-smart`
+- Calls multiple LLMs
+- Returns bestAnswer + all responses
+
+---
+
+## 🚀 Use Cases
+
+- AI answer reliability improvement
+- LLM benchmarking
+- Smart AI assistants
+- Multi-model decision systems
+
+---
+
+## ⚙️ Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone https://github.com/rebeizantoine/promptsphere-ai-platform.git
+cd promptsphere-ai-platform
+npm install
