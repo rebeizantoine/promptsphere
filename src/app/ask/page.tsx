@@ -53,7 +53,9 @@ export default function AskPage() {
     setError(null);
 
     const endpoint =
-      mode === "pro" ? `${API_URL}/api/compare-llms-smart` : `${API_URL}/ask`;
+      mode === "pro"
+        ? `${API_URL}/api/compare/compare-llms-smart`
+        : `${API_URL}/ask`;
 
     try {
       const response = await axios.post(
