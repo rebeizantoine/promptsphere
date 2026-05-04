@@ -96,9 +96,10 @@ export default function AskPage() {
     axios
       .get(`${API_URL}/api/admin/me`, { withCredentials: true })
       .then(() => setMode("pro"))
-      .catch(() => {});
+      .catch((err) => {
+        console.log("Not authenticated:", err.response?.status);
+      });
   }, []);
-
   return (
     <div>
       <Navbar />
