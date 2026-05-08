@@ -26,17 +26,7 @@ export default function ExerciseGeneratorPage() {
     setExercise(null);
     try {
       const res = await fetch(
-        "https://promptsphere-backend.onrender.com/api/exercises/generate-exercise",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            language,
-            difficulty,
-          }),
-        },
+        `https://promptsphere-backend.onrender.com/api/exercises/generate-exercise?language=${language}&difficulty=${difficulty}`,
       );
       if (!res.ok) throw new Error("Failed to fetch exercise");
       const data = await res.json();
