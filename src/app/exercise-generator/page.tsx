@@ -26,16 +26,26 @@ export default function ExerciseGeneratorPage() {
     setExercise(null);
     try {
       const res = await fetch(
-        `https://promptsphere-backend.onrender.com/api/exercises/generate-exercise?language=${language}&difficulty=${difficulty}`
+        "https://promptsphere-backend.onrender.com/api/exercises/generate-exercise",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            language,
+            difficulty,
+          }),
+        },
       );
       if (!res.ok) throw new Error("Failed to fetch exercise");
       const data = await res.json();
 
       const matchProblem = data.exercise.match(
-        /Problem:\s*([\s\S]*?)\nSolution:/
+        /Problem:\s*([\s\S]*?)\nSolution:/,
       );
       const matchSolution = data.exercise.match(
-        /Solution:\s*([\s\S]*?)\nExplanation:/
+        /Solution:\s*([\s\S]*?)\nExplanation:/,
       );
       const matchExplanation = data.exercise.match(/Explanation:\s*([\s\S]*)/);
 
