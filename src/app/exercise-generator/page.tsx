@@ -22,39 +22,54 @@ export default function ExerciseGeneratorPage() {
 
   const handleGenerate = async () => {
     setLoading(true);
+
     setShowAnswer(false);
+
     setExercise(null);
+
     try {
       const res = await fetch(
         `https://promptsphere-backend.onrender.com/api/exercises/generate-exercise?language=${language}&difficulty=${difficulty}`,
       );
-      if (!res.ok) throw new Error("Failed to fetch exercise");
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch exercise");
+      }
+
       const data = await res.json();
 
-      const matchProblem = data.exercise.match(
-        /Problem:\s*([\s\S]*?)\nSolution:/,
-      );
-      const matchSolution = data.exercise.match(
-        /Solution:\s*([\s\S]*?)\nExplanation:/,
-      );
-      const matchExplanation = data.exercise.match(/Explanation:\s*([\s\S]*)/);
+      const exerciseText = data.exercise || "";
+
+      // SPLIT THE RESPONSE
+      const problemSplit = exerciseText.split("Solution:");
+
+      const explanationSplit = problemSplit[1]?.split("Explanation:");
+
+      // CLEAN VALUES
+      const problem =
+        problemSplit[0]?.replace("Problem:", "")?.trim() ||
+        t("exercise.noProblem", "No problem found.");
+
+      const solution =
+        explanationSplit[0]?.replace("Solution:", "")?.trim() ||
+        t("exercise.noSolution", "No solution found.");
+
+      const explanation =
+        explanationSplit[1]?.replace("Explanation:", "")?.trim() ||
+        t("exercise.noExplanation", "No explanation found.");
 
       const newExercise = {
-        problem:
-          matchProblem?.[1]?.trim() ||
-          t("exercise.noProblem", "No problem found."),
-        solution:
-          matchSolution?.[1]?.trim() ||
-          t("exercise.noSolution", "No solution found."),
-        explanation:
-          matchExplanation?.[1]?.trim() ||
-          t("exercise.noExplanation", "No explanation found."),
+        problem,
+        solution,
+        explanation,
       };
 
       setExercise(newExercise);
+
       setHistory((prev) => [newExercise, ...prev]);
     } catch (err) {
       console.error(err);
+
       alert(t("exercise.fetchError", "❌ Failed to generate exercise"));
     } finally {
       setLoading(false);
