@@ -11,13 +11,19 @@ export default function ExerciseGeneratorPage() {
   const [difficulty, setDifficulty] = useState("easy");
   const [exercise, setExercise] = useState<null | {
     problem: string;
+    testCases: string;
     solution: string;
     explanation: string;
   }>(null);
   const [loading, setLoading] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
   const [history, setHistory] = useState<
-    { problem: string; solution: string; explanation: string }[]
+    {
+      problem: string;
+      testCases: string;
+      solution: string;
+      explanation: string;
+    }[]
   >([]);
 
   const handleGenerate = async () => {
@@ -40,38 +46,56 @@ export default function ExerciseGeneratorPage() {
 
       const exerciseText = data.exercise || "";
 
-      // SPLIT THE RESPONSE
-      const problemSplit = exerciseText.split("Solution:");
+      // SPLIT RESPONSE
+      const solutionSplit = exerciseText.split("Solution:");
+      const beforeSolution = solutionSplit[0] || "";
+      const afterSolution = solutionSplit[1] || "";
 
-      const explanationSplit = problemSplit[1]?.split("Explanation:");
+      const testCasesSplit = beforeSolution.split("Test Cases:");
+      const problemPart = testCasesSplit[0] || "";
+      const testCasesPart = testCasesSplit[1] || "";
+
+      const explanationSplit = afterSolution.split("Explanation:");
+
+      const solutionPart = explanationSplit[0] || "";
+      const explanationPart = explanationSplit[1] || "";
 
       // CLEAN VALUES
       const problem =
-        problemSplit[0]?.replace("Problem:", "")?.trim() ||
+        problemPart.replace("Problem:", "").trim() ||
         t("exercise.noProblem", "No problem found.");
 
+      const testCases =
+        testCasesPart.trim() ||
+        t("exercise.noTestCases", "No test cases found.");
+
       const solution =
-        explanationSplit[0]?.replace("Solution:", "")?.trim() ||
-        t("exercise.noSolution", "No solution found.");
+        solutionPart.trim() || t("exercise.noSolution", "No solution found.");
 
       const explanation =
-        explanationSplit[1]?.replace("Explanation:", "")?.trim() ||
+        explanationPart.trim() ||
         t("exercise.noExplanation", "No explanation found.");
 
       const newExercise = {
         problem,
+        testCases,
         solution,
         explanation,
       };
 
       setExercise(newExercise);
-
-      setHistory((prev) => [newExercise, ...prev]);
+      setHistory((prev) => [
+        {
+          problem: newExercise.problem,
+          testCases: newExercise.testCases,
+          solution: newExercise.solution,
+          explanation: newExercise.explanation,
+        },
+        ...prev,
+      ]);
+      setLoading(false);
     } catch (err) {
       console.error(err);
-
-      alert(t("exercise.fetchError", "❌ Failed to generate exercise"));
-    } finally {
       setLoading(false);
     }
   };
@@ -138,6 +162,11 @@ export default function ExerciseGeneratorPage() {
               <pre className="whitespace-pre-wrap break-words mb-6">
                 {exercise.problem}
               </pre>
+              <h2 className="text-2xl font-bold mb-4">🧪 Test Cases</h2>
+
+              <pre className="whitespace-pre-wrap break-words mb-6 bg-black/20 p-4 rounded-lg">
+                {exercise.testCases}
+              </pre>
 
               {!showAnswer ? (
                 <button
@@ -165,41 +194,59 @@ export default function ExerciseGeneratorPage() {
               )}
             </div>
           )}
-
           <div className="bg-gray-900 bg-opacity-60 p-6 rounded-xl mt-8 max-h-96 overflow-y-auto">
+            {" "}
             <h2 className="text-2xl font-bold mb-4">
-              {t("exercise.history", "Exercise History")}
-            </h2>
+              {" "}
+              {t("exercise.history", "Exercise History")}{" "}
+            </h2>{" "}
             {history.length > 0 ? (
               <ul className="space-y-4">
+                {" "}
                 {history.map((ex, idx) => (
                   <li key={idx} className="bg-black/20 p-4 rounded-lg">
+                    {" "}
                     <p className="font-bold mb-2">
-                      {t("exercise.problem", "Problem")}
-                    </p>
-                    <pre className="whitespace-pre-wrap break-words mb-2">
-                      {ex.problem}
-                    </pre>
+                      {" "}
+                      📝 {t("exercise.problem", "Problem")}{" "}
+                    </p>{" "}
+                    <pre className="whitespace-pre-wrap break-words mb-4">
+                      {" "}
+                      {ex.problem}{" "}
+                    </pre>{" "}
                     <p className="font-bold mb-2">
-                      {t("exercise.solution", "Solution")}
-                    </p>
-                    <pre className="whitespace-pre-wrap break-words mb-2">
-                      {ex.solution}
-                    </pre>
+                      {" "}
+                      🧪 {t("exercise.testCases", "Test Cases")}{" "}
+                    </p>{" "}
+                    <pre className="whitespace-pre-wrap break-words mb-4 bg-black/20 p-3 rounded-lg">
+                      {" "}
+                      {ex.testCases}{" "}
+                    </pre>{" "}
                     <p className="font-bold mb-2">
-                      {t("exercise.explanation", "Explanation")}
-                    </p>
+                      {" "}
+                      ✅ {t("exercise.solution", "Solution")}{" "}
+                    </p>{" "}
+                    <pre className="whitespace-pre-wrap break-words mb-4 bg-black/20 p-3 rounded-lg">
+                      {" "}
+                      {ex.solution}{" "}
+                    </pre>{" "}
+                    <p className="font-bold mb-2">
+                      {" "}
+                      💡 {t("exercise.explanation", "Explanation")}{" "}
+                    </p>{" "}
                     <pre className="whitespace-pre-wrap break-words">
-                      {ex.explanation}
-                    </pre>
+                      {" "}
+                      {ex.explanation}{" "}
+                    </pre>{" "}
                   </li>
-                ))}
+                ))}{" "}
               </ul>
             ) : (
               <p className="text-center text-white/80">
-                {t("exercise.noHistory", "No exercises generated yet.")}
+                {" "}
+                {t("exercise.noHistory", "No exercises generated yet.")}{" "}
               </p>
-            )}
+            )}{" "}
           </div>
         </div>
       </main>
